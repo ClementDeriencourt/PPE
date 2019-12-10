@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Gestion des developpeurs {% endblock %}
+       
+{% block contenu %} <h1> Gestion des developpeurs </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+       {% else %}  
+       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+    {% endif %}         
+{% endif %}         
+    
+<div class="panel">
+  <!-- Default panel contents -->
+  <div class="panel-heading background-violet">Liste des équipes - <a href="index.php?page=developpeurajout" class="blanc">Ajouter un developpeur</a></div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+  <table class="table table-hover table-striped">
+      <tr><th>nom</th><th>prenom</th><th>adresse</th><th>Tel</th><th>grade</th><th></th><th><input type="checkbox" id="select" onchange="cocherTout(this.checked)" name="acs"></th></tr>
+   {% for d in liste %}
+          <tr><td>{{d.nomDev}}</td><td>{{d.prenomDev}}</td><td>{{d.adresseDev}}</td><td>{{d.telDev}}</td><td>{{d.grade}}</td>
+              <td>
+          <div class="btn-group btn-group-lg"><a href="index.php?page=devmodif&id={{d.idDev}}"><span class="glyphicon glyphicon-pencil violet" aria-hidden="true">
+                  
+                  </span></a></div></td><td><div class="btn-group btn-group-lg"><a href="index.php?page=dev&id={{d.idDev}}">
+                              <span class="glyphicon glyphicon-trash violet" aria-hidden="true"></span></a></div></td></tr> 
+<td>
+                            <input type="checkbox" name="cocher[]" id="cocher[]" value="{{d.idDev}}"/>
+                        </td>   
+{% endfor %}    
+  </table>
+  </div>
+</div>
+
+             <script type="text/javascript">
+        function cocherTout(etat)
+        {
+            var cases = document.getElementsByTagName('input');   // on recupere tous les INPUT
+            for (var i = 0; i < cases.length; i++) {     // on les parcourt
+                if (cases[i].type == 'checkbox') {    // si on a une checkbox...
+                    cases[i].checked = etat;
+                }
+            }// ... on la coche ou non
+        }
+    </script>
+   
+{% endblock %} 

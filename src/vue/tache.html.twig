@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+  {{ parent() }}
+  - Gestion des taches
+{% endblock %}
+
+{% block contenu %}
+
+  <div class="textcenter">
+    <h1 class="text-purple">
+      Gestion des taches
+    </h1>
+
+  </div>
+
+  {% if form.valide is defined %}
+    {% if form.valide == true %}
+      <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+    {% else %}
+      <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+    {% endif %}
+  {% endif %}
+  <a class="btn btn-purple" href="index.php?page=tacheajout" role="button">Ajouter un taches</a>
+    <div class="table-responsive">
+      <br>
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Intitulé de la tache</th>
+            <th scope="col">Nombre d'heure</th>
+            <th scope="col">Cout de la tache</th>
+            <th></th>
+            <th></th>
+            <th> <input type="checkbox" id="select" onchange="cocherTout(this.checked)" name="acs"></th>
+            
+          </tr>
+        </thead>
+        
+        <tbody>
+          {% for t in liste %}
+            <tr>
+              <td scope="row" class="text-maj">
+                  {{t.libelleT}}</td>
+              <td>{{t.nbheureT}}H</td>
+              <td>{{t.coutT}}€</td>
+              <td>
+                <a href="index.php?page=tachemodif&id={{t.id}}">
+                  <i class="fas fa-pen"></i>
+                </a>
+              </td>
+              <td>
+                <a href="index.php?page=tache&id={{t.id}}">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </td>
+              <td>
+                            <input type="checkbox" name="cocher[]" id="cocher[]" value="{{t.id}}"/>
+              </td>
+            </tr>
+          {% else %}
+            
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+            <script type="text/javascript">
+        function cocherTout(etat)
+        {
+            var cases = document.getElementsByTagName('input');   // on recupere tous les INPUT
+            for (var i = 0; i < cases.length; i++) {     // on les parcourt
+                if (cases[i].type == 'checkbox') {    // si on a une checkbox...
+                    cases[i].checked = etat;
+                }
+            }// ... on la coche ou non
+        }
+    </script>
+          
+{% endblock %}

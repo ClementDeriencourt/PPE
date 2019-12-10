@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Gestion des contrats {% endblock %}
+       
+{% block contenu %} <h1> Gestion des contrats </h1> 
+
+{% if form.valide is defined %} 
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.message }}</h1>
+       {% else %}  
+       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+    {% endif %}         
+{% endif %}         
+    
+<div class="panel">
+  <!-- Default panel contents -->
+  <div class="panel-heading background-violet">Liste des contrats  <a href="index.php?page=contratajout" class="blanc">Ajouter un contrat</a></div>
+  <!-- Table -->
+  <div class="table-responsive">
+  <table class="table table-hover table-striped">
+      <tr><th>Total contrat</th><th>Facture</th><th>Date signature</th></tr>
+   {% for c in liste %}
+          <tr><td>{{c.totalContrat}}</td><td>{{c.facture}}</td><td>{{c.dateSignature}}</td><td> <div class="btn-group btn-group-lg"><a href="index.php?page=contratmodif&id={{c.idContrat}}"><span class="glyphicon glyphicon-pencil violet" aria-hidden="true"></span></a></div></td><td><div class="btn-group btn-group-lg"></div></td></tr> 
+   {% endfor %}    
+  </table>
+  </div>
+</div>
+
+{% endblock %} 

@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{ parent() }} - Modification d'un Developpeur {% endblock %}
+       
+{% block contenu %} <h1> Modification d'un Developpeur </h1> 
+
+{% if form.dev is defined %} 
+    {% if form.dev != null %}    
+        <div class="panel-body">
+        <form  class="form-signin" action="index.php?page=devmodif" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="id" name="id" value="{{form.dev.idDev}}"/> 
+        <label for="inputnom" class="sr-only">Nom:</label>
+        <input type="text" id="inputLibelle" name="inputnom" class="form-control" placeholder="Saisir un nom" value="{{form.dev.nomDev}}" required autofocus>
+        <label for="inputprenom" class="sr-only">Prénom:</label>
+        <input type="text" id="inputLibelle" name="inputprenom" class="form-control" placeholder="Saisir un prénom" value="{{form.dev.prenomDev}}" required autofocus>
+        <label for="inputadresse" class="sr-only">Adresse:</label>
+        <input type="text" id="inputLibelle" name="inputadresse" class="form-control" placeholder="Saisir une adresse" value="{{form.dev.adresseDev}}" required autofocus>
+        <label for="inputtelephone" class="sr-only">Téléphone:</label>
+        <input type="text" id="inputLibelle" name="inputtelephone" class="form-control" placeholder="Saisir un numéro" value="{{form.dev.telDev}}" required autofocus>
+        <label for="inputgrade" class="sr-only">Grade:</label>
+        <input type="text" id="inputLibelle" name="inputgrade" class="form-control" placeholder="Saisir un grade" value="{{form.dev.grade}}" required autofocus>
+        {% else %}
+             <option value="non">Developpeur non identifié</option>
+        {% endif %}      
+        {% for d in form.dev %}
+            {% if form.dev.idDev == u.email %}  
+                <option value="{{ u.idDev }}" selected>{{ u.nom }} {{ u.prenom }}</option> 
+            {% else %} 
+                <option value="{{ u.idDev }}">{{ u.nom }} {{ u.prenom }}</option>
+            {% endif %}      
+        {% endfor%}    
+        </select>    
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button>
+        </form>
+        </div> 
+    {% else %}  
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=developpeur" class="violet">Retourner sur la liste des Developpeurs</a></h1>
+        {% else %}    
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=developpeur" class="violet">Retourner sur la liste des Developpeurs</a></h1>
+{% endif %}
+{% endif %}
+
+
+
+{% endblock %} 

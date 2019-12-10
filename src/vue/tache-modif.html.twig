@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} - Modification d'une tache {% endblock %}
+
+{% block contenu %} <h1> Modification d'une tâche</h1>
+
+{% if form.tache is defined %}
+    {% if form.tache != null %}
+        <div class="panel-body">
+        <form  class="form-signin" action="index.php?page=tachemodif" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="id" name="id" value="{{form.tache.id}}"/>
+        <label for="inputLibelle" class="sr-only">Libellé:</label>
+        
+        <input type="text" id="inputLibelle" name="inputLibelle" class="form-control" placeholder="Saisir un libellé" value="{{form.tache.libelle}}" required autofocus>
+        <label for="inputNbHeure" class="sr-only">Nombre D'heures :</label>
+        <select name="inputNbHeure" class="form-control">
+        <label for="inputCoupTache" class="sr-only">Coût Tâche:</label>
+        <select name="inputCoupTache" class="form-control">
+        </select>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Ajouter</button>
+        </form>
+        </div>
+    {% else %}
+        {% if form.valide == true %}
+            <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=tache" class="violet">Retourner sur la liste des Tâches</a></h1>
+        {% else %}
+            <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+            <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=tache" class="violet">Retourner sur la liste des Tâches</a></h1>
+        {% endif %}
+    {% endif %}
+{% else %}
+     <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1>
+     <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=tache" class="violet">Retourner sur la liste des Tâches</a></h1>
+
+{% endif %}
+{% endblock %}

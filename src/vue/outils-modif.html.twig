@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} - Modifier un outil {% endblock %}
+       
+{% block contenu %} 
+
+{% if form.outils is defined %} 
+    {% if form.outils != null %}
+      <form class="form-signin" action="index.php?page=outilmodif" method="post" enctype="application/x-www-form-urlencoded">
+      <h1 class="h3 mb-3 font-weight-normal">Modifier un outil</h1>
+      <label for="inputLibelle" class="sr-only">Libelle:</label>
+      <label for="inputVersion" class="sr-only">Version</label>
+      <input type="Libelle" id="Libelle" name="Libelle" class="form-control" placeholder="Modifier le libelle">
+      
+
+      <label for="libelle" class="sr-only">Libelle :</label>
+      <input type="text" id="libelleO" name="libelle" class="form-control" placeholder="libelle" value="{{form.outil.libelle}}" required>
+      <label for="version" class="sr-only">Version :</label>
+      <input type="version" id="versionO" name="version" class="form-control" placeholder="version" value="{{form.outil.libelle}}" required>
+      
+   
+     
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit" name="btModifier">Modifier</button>
+     
+      </form>
+    {% else %} 
+       <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+       <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=outil" class="violet">Retourner sur la liste des outils</a></h1>
+    {% endif %}     
+   
+{% else %}  
+     {% if form.valide == true %}
+         <h1 class="h3 mb-3 font-weight-normal">{{ form.message }} </h1>
+         <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=outil" class="violet">Retourner sur la liste des outils</a></h1>
+     {% else %}    
+      <h1 class="alert alert-danger" role="alert">{{ form.message }}</h1> 
+      <h1 class="h3 mb-3 font-weight-normal"><a href="index.php?page=outil" class="violet">Retourner sur la liste des outils</a></h1>
+    {% endif %} 
+{% endif %}      
+
+{% endblock %} 
+

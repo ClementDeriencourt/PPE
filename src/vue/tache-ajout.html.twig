@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block style %}<link href="css/style-signin.css" rel="stylesheet"> {% endblock %}
+{% block title %} {{ parent() }} - Ajout d'une Tâche {% endblock %}
+{% block contenu %}
+
+{% if form.valide is defined %}
+    {% if form.valide == true %}
+       <h1 class="h3 mb-3 font-weight-normal">Ajout réussie</h1>
+    {% else %}
+       <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1>
+    {% endif %}
+{% else %}
+
+<div class="panel-body">
+  <form  class="form-signin" action="index.php?page=tacheajout" method="post" enctype="application/x-www-form-urlencoded">
+    <label for="libelleT" class="sr-only">Libellé:</label>
+    <input type="text" id="libelleT" name="libelleT" class="form-control" placeholder="Saisir un libellé" required autofocus>
+    <label for="nbheureT" class="sr-only">Nombre D'heure:</label>
+   <input type="int" id="nbheureT" name="nbheureT" class="form-control" placeholder="Saisir un Nombre D'heures" required autofocus>
+  <label for="coutT" class="sr-only">Cout d'une Tâche  : </label>
+   <input type="int" id="coutT" name="coutT" class="form-control" placeholder="Saisir Un cout de la tâche" required autofocus>
+
+  
+    <button class="btn btn-lg btn-purple btn-block" type="submit" name="btTAjouter">Ajouter</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}
