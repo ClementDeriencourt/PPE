@@ -1,12 +1,12 @@
 {% extends "base.html.twig" %}
 
-{% block title %} {{ parent() }} - Ajout d'un contrat {% endblock %}
+{% block title %} {{ parent() }} - Modifier un contrat {% endblock %}
        
-{% block contenu %} <h1> Ajout d'un contrat </h1> 
+{% block contenu %} <h1> Modifier un contrat </h1> 
 
 {% if form.valide is defined %} 
     {% if form.valide == true %}
-       <h1 class="h3 mb-3 font-weight-normal">Ajout réussie</h1>
+       <h1 class="h3 mb-3 font-weight-normal">Modification réussie</h1>
     {% else %} 
        <h1 class="h3 mb-3 font-weight-normal">{{ form.valide.message }}</h1> 
     {% endif %}     
@@ -15,9 +15,9 @@
 <div class="panel-body">
   <form  class="form-signin" action="index.php?page=contratmodif" method="post" enctype="application/x-www-form-urlencoded">
     <label for="totalContrat" class="sr-only">Total:</label>
-    <input type="int" id="totalContrat" name="totalContrat" class="form-control" placeholder="Saisir le total" required autofocus>
+    <input type="int" id="totalContrat" name="totalContrat" class="form-control" placeholder="Nouveau total" required autofocus>
     <label for="facture" class="sr-only">Facture:</label>
-    <input type="int" id="totalContrat" name="facture" class="form-control" placeholder="Saisir le prix de la facture" required autofocus>
+    <input type="int" id="totalContrat" name="facture" class="form-control" placeholder="Nouvelle facture" required autofocus>
     <label for="facture" class="sr-only">Date de la signature:</label>
     <input type="date" id="totalContrat" name="dateSignature" class="form-control" placeholder="Saisir la date de la signature" required autofocus>
    

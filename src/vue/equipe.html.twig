@@ -42,7 +42,42 @@
                 }
             }// ... on la coche ou non
         }
+        
+        function Update()
+        {
+$.ajax({ //appel de la fonction ajax
+type: 'GET', 
+url: 'equipe.html.twig', // quelle page en question
+success: function(data){$('#discution').html(data);}
+});
+   
+}
+ 
+$('document').ready(function(){ // rappel la fonction pour la mettre en oeuvre
+setInterval('Update();',3000); // tout les combien de temps charge la page
+});
     </script>
 {% endblock %} 
 
+<div id="discution">
+ 
+</div>
+ 
+<script type="text/javascript">
+<!--
+function Update()
+{
+$.ajax({
+type: 'GET',
+url: 'tchat.php',
+success: function(data){$('#discution').html(data);}
+});
+   
+}
+ 
+$('document').ready(function(){
+setInterval('Update();',1000);
+});
+-->
+</script>
 
